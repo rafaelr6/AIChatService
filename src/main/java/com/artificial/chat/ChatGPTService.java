@@ -14,7 +14,7 @@ public class ChatGPTService {
     private final RestTemplate restTemplate;
     private final String apiKey;
 
-    public ChatGPTService(RestTemplate restTemplate, @Value("${OPENAI_API_KEY}") String apiKey) {
+    public ChatGPTService(RestTemplate restTemplate, @Value("${spring.ai.openai.api-key}") String apiKey) {
         this.restTemplate = restTemplate;
         this.apiKey = apiKey;
     }
