@@ -11,13 +11,12 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class ChatGPTService {
 
-    @Value("${spring.ai.openai.api-key}")
-    private String apiKey;
-
     private final RestTemplate restTemplate;
+    private final String apiKey;
 
-    public ChatGPTService(RestTemplate restTemplate) {
+    public ChatGPTService(RestTemplate restTemplate, @Value("${OPENAI_API_KEY}") String apiKey) {
         this.restTemplate = restTemplate;
+        this.apiKey = apiKey;
     }
 
     public String getChatGPTResponse(String prompt) {
