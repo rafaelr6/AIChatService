@@ -19,15 +19,16 @@ public class ChatGPTService {
         this.apiKey = apiKey;
     }
 
-    public String getChatGPTResponse(String prompt) {
+    public String getChatGPTResponse(String prompt, String model, String role) {
         String url = "https://api.openai.com/v1/chat/completions"; // Updated endpoint
     
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + apiKey);
         headers.set("Content-Type", "application/json");
     
-        String requestBody = "{ \"model\": \"gpt-3.5-turbo\", \"messages\": [{\"role\": \"user\", \"content\": \"" + prompt + "\"}], \"max_tokens\": 150 }";
-    
+        //model can be "gpt-3.5-turbo" or "gpt-4"
+        String requestBody = "{ \"model\": \"" + model + "\", \"messages\": [{\"role\": \"" + role + "\", \"content\": \"" + prompt + "\"}], \"max_tokens\": 150 }";
+       
         HttpEntity<String> entity = new HttpEntity<>(requestBody, headers);
     
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
